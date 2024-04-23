@@ -2,17 +2,46 @@ import './App.css'
 import { useState } from 'react'
 import { TwitterFollowCard } from './TwitterFollowCard'
 
+const users = [
+    {
+        userName: 'midudev',
+        name: 'Miguel Angel Duran',
+        isFollowing: true
+    },
+    {
+        userName: 'pheralb',
+        name: 'Pablo H',
+        isFollowing: false
+    },
+    {
+        userName: 'PacoHdezs',
+        name: 'Paco Hdez',
+        isFollowing: true
+    },
+    {
+        userName: 'TMChein',
+        name: 'Tomas',
+        isFollowing: true
+    },
+]
+
 export function App () {
-    const [name, setName] = useState('midudev')
     return(
         <section className='App'>
-        <TwitterFollowCard initialIsFollowing={true} userName={name} name="Miguel Angel Duran" />
-        <TwitterFollowCard  userName="pheralb" name="Pablo Hernandez" />
-        <TwitterFollowCard  userName="vxdene" name="Zunder Tender" />
-
-        <button onClick={() => setName('pedromichel')}>
-            Cambio nombre
-        </button>
+            {
+                users.map(user => {
+                    const { userName, name, isFollowing,index } = user
+                    return (
+                        <TwitterFollowCard 
+                        key={index}
+                            userName={userName}
+                            initialIsFollowing={isFollowing}
+                            name={name}
+                        >
+                        </TwitterFollowCard>
+                    )
+                })
+            }
         </section>
     )
 }
